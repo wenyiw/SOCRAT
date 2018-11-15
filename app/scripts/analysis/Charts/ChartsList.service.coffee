@@ -14,6 +14,8 @@ module.exports = class ChartsList extends BaseService
         value: 0
         vars:
           placeholder: false
+        params:
+          x_residual: true
     ,
       name: 'Bar Graph'
       config:

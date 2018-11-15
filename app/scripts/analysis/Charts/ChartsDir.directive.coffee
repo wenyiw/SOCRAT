@@ -134,7 +134,7 @@ module.exports = class ChartsDir extends BaseDirective
             when 'Pie Chart'
               @pie.drawPie(data, labels, container, flags)
             when 'Scatter Plot Matrix'
-              @scatterMatrix.drawScatterMatrix(data, labels, container)
+              @scatterMatrix.drawScatterMatrix(data, labels, container, flags)
             when 'Diverging Stacked Bar Chart'
               @divergingStackedBar.drawDivergingStackedBar(data, labels, container)
             when 'Ranged Dot Plot'

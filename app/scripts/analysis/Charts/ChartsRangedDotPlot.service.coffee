@@ -39,7 +39,7 @@ module.exports = class ChartsRangedDotPlot extends BaseService
     mean_x = sumx/data.length
 
     for dic in data
-      dic["residual_x"] = dic[x_] - mean_x
+      dic["residual_x"] = (dic[x_] - mean_x).toFixed(3)
 
     if (flags.x_residual)
       labels.xLab.value = "residual_x"

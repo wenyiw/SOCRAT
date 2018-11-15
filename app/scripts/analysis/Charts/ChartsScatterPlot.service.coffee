@@ -46,8 +46,8 @@ module.exports = class ChartsScatterPlot extends BaseService
     mean_y = sumy/data.length
 
     for dic in data
-      dic["residual_x"] = dic[x_] - mean_x
-      dic["residual_y"] = dic[y_] - mean_y
+      dic["residual_x"] = (dic[x_] - mean_x).toFixed(3)
+      dic["residual_y"] = (dic[y_] - mean_y).toFixed(3)
 
     if (flags.x_residual)
       x_ = "residual_x"

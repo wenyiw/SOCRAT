@@ -40,7 +40,7 @@ module.exports = class ChartsTukeyBoxPlot extends BaseService
     mean_y = sumy/data.length
 
     for dic in data
-      dic["residual_y"] = dic[y_] - mean_y
+      dic["residual_y"] = (dic[y_] - mean_y).toFixed(3)
 
     if (flags.y_residual)
       labels.yLab.value = "residual_y"

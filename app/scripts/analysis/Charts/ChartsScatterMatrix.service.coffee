@@ -24,7 +24,7 @@ module.exports = class ChartsScatterMatrix extends BaseService
     @ve = require 'vega-embed'
     @vt = require 'vega-tooltip/build/vega-tooltip.js'
 
-  drawScatterMatrix: (data, labels, container) ->
+  drawScatterMatrix: (data, labels, container, flags) ->
 
     # labels here is different from that for other charts
     # fields are the same as labels for other charts
@@ -54,6 +54,23 @@ module.exports = class ChartsScatterMatrix extends BaseService
       if labels
         row_obj[ordinal] = labels[row_ind]
       d.push row_obj
+
+    sums = []
+    for field in fields
+      sum = 0
+      for dic in d
+        sum += parseFloat(dic[field])
+      sums.push(sum)
+
+    means = []
+    for sum in sums
+      means.push(sum/d.length)
+    for field, idx in fields
+      for dic in d
+        dic["residual_" + field] = (dic[field] - means[idx]).toFixed(3)
+    if flags.x_residual
+      for field, idx in fields
+        fields[idx] = "residual_" + field
 
     vlSpec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
