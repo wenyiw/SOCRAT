@@ -36,13 +36,13 @@ module.exports = class ChartsSidebarCtrl extends BaseCtrl
         stacked: false
         normalized: false
         threshold: 0
-        # BinnedHeatmap:
+        # Heatmap:
+        bubble: false
         yBin: null
         xBin: null
-        marginalHistogram: false
         # ScatterPlot:
         showSTDEV: false
-        binned: false
+        binned: false # heatmap also uses this
         opacity: false
         x_residual: false
         y_residual: false

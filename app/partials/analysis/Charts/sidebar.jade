@@ -71,14 +71,14 @@ div(ng-controller='ChartsSidebarCtrl as sidebar')
         type="text"
         ng-model="sidebar.chartParams.flags.orientations"
         )
-      div.form-horizontal(ng-show="sidebar.selectedGraph.config.params.xBin != null")
-        label(for = "xbin") {{sidebar.selectedGraph.config.params.xbinLabel}} &nbsp;
+      div.form-horizontal(ng-show="sidebar.selectedGraph.config.params.binned != null")
+        label(for = "xbin") {{sidebar.selectedGraph.config.vars.xBinLabel}} &nbsp;
         input#xbin.form-control(
         type="text"
         ng-model="sidebar.chartParams.flags.xBin"
         )
-      div.form-horizontal(ng-show="sidebar.selectedGraph.config.params.yBin != null")
-        label(for = "ybin") {{sidebar.selectedGraph.config.params.ybinLabel}} &nbsp;
+      div.form-horizontal(ng-show="sidebar.selectedGraph.config.params.binned != null")
+        label(for = "ybin") {{sidebar.selectedGraph.config.vars.yBinLabel}} &nbsp;
         input#ybin.form-control(
         type="text"
         ng-model="sidebar.chartParams.flags.yBin"

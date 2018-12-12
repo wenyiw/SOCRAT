@@ -28,7 +28,7 @@ module.exports = class ChartsScatterPlot extends BaseService
   getName: () ->
     return 'Scatter Plot'
 
-  drawScatterPlot: (data, labels, container, flags) ->
+  draw: (data, labels, container, flags) ->
 
     container.select("#slider").remove()
     container.select("#maxbins").remove()

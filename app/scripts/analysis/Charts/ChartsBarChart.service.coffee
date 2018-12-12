@@ -27,7 +27,7 @@ module.exports = class ChartsBarChart extends BaseService
   getName: () ->
     return 'Bar Graph'
 
-  drawBar: (data, labels, container, flags) ->
+  draw: (data, labels, container, flags) ->
 
     max = Math.max.apply Math, data.map((o) -> o[labels.yLab.value])
     threshold = if flags.threshold then flags.threshold else max

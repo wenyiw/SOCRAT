@@ -38,9 +38,6 @@ module.exports = class ChartsList extends BaseService
           normalized: true
           x_residual: true
           y_residual: true
-#          hLabel: "Toggle horizontal"
-#          sLabel: "Toggle stacked"
-#          nLabel: "Toggle normalized"
     ,
       name: 'Scatter Plot'
       config:
@@ -123,7 +120,7 @@ module.exports = class ChartsList extends BaseService
         params:
           x_residual: true
     ,
-      name: 'Binned Heatmap'
+      name: 'Heatmap'
       config:
         description: "Choose x, y, and z variables, along with max bin values."
         value: 8
@@ -132,17 +129,14 @@ module.exports = class ChartsList extends BaseService
           w: false
           x: ['integer', 'number', 'string']
           y: ['integer', 'number', 'string']
-          z: ['integer', 'string']
           m: true
           xLabel: "X"
           yLabel: "Y"
-          zLabel: "Z"
+          xBinLabel: "X Bin"
+          yBinLabel: "Y Bin"
         params:
-          xBin: true
-          yBin: true
-          marginalHist: true
-          xbinLabel: "X Bin"
-          ybinLabel: "Y Bin"
+          bubble: true
+          binned: true
           x_residual: true
           y_residual: true
     ,

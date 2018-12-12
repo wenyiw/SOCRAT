@@ -24,7 +24,7 @@ module.exports = class ChartsScatterMatrix extends BaseService
     @ve = require 'vega-embed'
     @vt = require 'vega-tooltip/build/vega-tooltip.js'
 
-  drawScatterMatrix: (data, labels, container, flags) ->
+  draw: (data, labels, container, flags) ->
 
     # labels here is different from that for other charts
     # fields are the same as labels for other charts

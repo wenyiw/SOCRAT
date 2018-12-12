@@ -22,7 +22,7 @@ module.exports = class ChartsDir extends BaseDirective
           'app_analysis_charts_treemap',
           'app_analysis_charts_tukeyBoxPlot',
           'app_analysis_charts_checkTime',
-          'app_analysis_charts_binnedHeatmap',
+          'app_analysis_charts_heatmap',
           'app_analysis_charts_stripPlot'
           'app_analysis_charts_scatterMatrix'
           'app_analysis_charts_divergingStackedBar'
@@ -50,7 +50,7 @@ module.exports = class ChartsDir extends BaseDirective
     @bivariate = @app_analysis_charts_bivariateLineChart
     @normal = @app_analysis_charts_normalChart
     @tukeyBoxPlot = @app_analysis_charts_tukeyBoxPlot
-    @binnedHeatmap = @app_analysis_charts_binnedHeatmap
+    @heatmap = @app_analysis_charts_heatmap
     @stripPlot = @app_analysis_charts_stripPlot
     @scatterMatrix = @app_analysis_charts_scatterMatrix
     @divergingStackedBar = @app_analysis_charts_divergingStackedBar
@@ -60,10 +60,21 @@ module.exports = class ChartsDir extends BaseDirective
     @sunburst = @app_analysis_charts_sunburst
     @cumulativeFrequency = @app_analysis_charts_cumulative
     @residual = @app_analysis_charts_residual
-    #@charts = [@areaTrellis, @bar, @bubble, @histogram, @pie, @scatterPlot, @stackBar, @time,
-      #@trellis, @streamGraph, @area, @treemap, @line, @bivariate, @normal, @tukeyBoxPlot, @binnedHeatmap, @stripPlot]
-    @charts = [@scatterPlot, @bar, @binnedHeatmap, @bubble, @histogram, @pie,
-      @normal, @tukeyBoxPlot, @stripPlot, @scatterMatrix, @rangedDotPlot, @wordCloud]
+
+    @charts = {
+      'Scatter Plot Matrix': @scatterMatrix
+      'Bar Graph': @bar
+      'Scatter Plot': @scatterPlot
+      'Histogram': @histogram
+      'Tukey Box Plot (1.5 IQR)': @tukeyBoxPlot
+      'Pie Chart': @pie
+      'Normal Distribution': @normal
+      'Heatmap': @heatmap
+      'Strip Plot': @stripPlot
+      'Ranged Dot Plot': @rangedDotPlot
+      'Word Cloud': @wordCloud
+      'Cumulative Frequency': @cumulativeFrequency
+    }
 
     @restrict = 'E'
     @template = "<div id='vis' class='graph-container' style='overflow:auto; height: 600px'></div>"
@@ -96,57 +107,4 @@ module.exports = class ChartsDir extends BaseDirective
 
           d3charts = d3.select(elem.find('div')[0]).node().parentNode
           container = d3.select(d3charts)
-
-          switch scheme.name
-            when 'Trellis Chart'
-              @trellis.drawTrellis(data, labels, container)
-            when 'Area Trellis Chart'
-              @areaTrellis.areaTrellisChart(data,ranges,width,height,_graph,labels,container)
-            when 'Binned Heatmap'
-              @binnedHeatmap.drawHeatmap(data, labels, container, flags)
-            when 'Bar Graph'
-              @bar.drawBar(data, labels, container, flags)
-            when 'Bubble Chart'
-              @bubble.drawBubble(data, labels, container)
-            when 'Histogram'
-              @histogram.drawHist(data, labels, container, flags)
-            when 'Tukey Box Plot (1.5 IQR)'
-              @tukeyBoxPlot.drawBoxPlot(data, labels, container, flags)
-            when 'Scatter Plot'
-              @scatterPlot.drawScatterPlot(data, labels, container, flags)
-            when 'Stacked Bar Chart'
-              @stackBar.stackedBar(data, labels, container)
-            when 'Stream Graph'
-              @streamGraph.streamGraph(data, labels, container)
-            when 'Strip Plot'
-              @stripPlot.drawStripPlot(data, labels, container)
-            when 'Area Chart'
-              @area.drawArea(data, labels, container)
-            when 'Treemap'
-              @treemap.drawTreemap(data, labels, container)
-            when 'Line Chart'
-              @line.lineChart(data, labels, container)
-            when 'Bivariate Area Chart'
-              # @time.checkTimeChoice(data)
-              @bivariate.bivariateChart(height,width,_graph, data, labels)
-            when 'Normal Distribution'
-              @normal.drawNormalCurve(data, labels, container, flags)
-            when 'Pie Chart'
-              @pie.drawPie(data, labels, container, flags)
-            when 'Scatter Plot Matrix'
-              @scatterMatrix.drawScatterMatrix(data, labels, container, flags)
-            when 'Diverging Stacked Bar Chart'
-              @divergingStackedBar.drawDivergingStackedBar(data, labels, container)
-            when 'Ranged Dot Plot'
-              @rangedDotPlot.drawRangedDotPlot(data, labels, container, flags)
-            when 'Bullet Chart'
-              @bulletChart.drawBulletChart(data, labels, container)
-            when 'Word Cloud'
-              @wordCloud.drawWordCloud(data, labels, container, flags)
-            when 'Sunburst'
-              @sunburst.drawSunburst(data, labels, container)
-            when 'Cumulative Frequency'
-              @cumulativeFrequency.drawCumulativeFrequency(data, labels, container, flags)
-            when 'Residuals'
-              @residual.drawResidual(data, labels, container)
-
+          @charts[scheme.name].draw(data, labels, container, flags)

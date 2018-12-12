@@ -26,7 +26,7 @@ module.exports = class ChartsNormalChart extends BaseService
     @ve = require 'vega-embed'
     @vt = require 'vega-tooltip/build/vega-tooltip.js'
 
-  drawNormalCurve: (data, labels, container, flags) ->
+  draw: (data, labels, container, flags) ->
 
     container.select("#slider").remove()
     container.select("#maxbins").remove()

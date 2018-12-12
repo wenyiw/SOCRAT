@@ -90,7 +90,7 @@ module.exports = class ChartsHistogram extends BaseService
       @vt.vegaLite(result.view, vlSpec)
     )
 
-  drawHist: (data, labels, container, flags) ->
+  draw: (data, labels, container, flags) ->
 #    to find the min and max of a certain key in a list of objects
 #    [
 #      {x: 1, y: 4},
